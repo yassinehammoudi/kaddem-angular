@@ -1,0 +1,54 @@
+
+<div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+
+        <div class="card-header">
+          <div class="row">
+            <div class="col-sm-6 text-left">
+              <h1>Students:</h1>
+            </div>
+            <div class="col-sm-6">
+              <div class="float-right mr-4">
+
+                <a class="btn btn-sm btn-danger btn-simple" [routerLink]="['/student/add']">Add a new student</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="" [className]="students.length>12?'table-responsive':''">
+
+            <table class="table table-striped">
+
+              <thead class="text-primary">
+              <tr>
+                <th>Name</th>
+                <th>Option</th>
+                <th>Department</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let student of students; let i= index " class="hoverTd" (dblclick)="sendToEdit(student)">
+                <td>
+                  <span>{{student.prenom}} {{student.nom}}</span>
+                </td>
+                <td>
+                  <span>{{student.optionEtudiant}}</span>
+                </td>
+                <td>
+                  <span *ngIf="student.departement">{{student.departement.nomDepart}}</span>
+                  <span *ngIf="!student.departement">Not affected</span>
+                </td>
+              </tr>
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

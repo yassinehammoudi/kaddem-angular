@@ -1,0 +1,41 @@
+<div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h1>Add an University</h1>
+        </div>
+
+        <div class=" card-body">
+          <form ngForm #universiteForm="ngForm">
+
+            <div class=" row">
+              <div class=" col-md-12">
+                <div class=" form-group">
+                  <label> University name </label>
+                  <input
+                    class="form-control"
+                    placeholder="Name"
+                    type="text"
+
+                    name="nom"
+                    [(ngModel)]="uni.nom"
+
+                    required
+                    [minlength]="3"
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class=" card-footer">
+          <button class=" btn btn-fill btn-danger" (click)="addUni()" [disabled]="universiteForm.invalid">Save</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

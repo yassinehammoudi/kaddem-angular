@@ -1,0 +1,50 @@
+
+<div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+
+        <div class="card-header">
+          <div class="row">
+            <div class="col-sm-6 text-left">
+              <h1>Departments:</h1>
+            </div>
+            <div class="col-sm-6">
+              <div class="float-right mr-4">
+
+                <a class="btn btn-sm btn-danger btn-simple" [routerLink]="['/department/add']">Add a new department</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="" [className]="departments.length>12?'table-responsive':''">
+
+            <table class="table table-striped">
+
+              <thead class="text-primary">
+              <tr>
+                <th>Name</th>
+                <th>University</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let dep of departments; let i= index " class="hoverTd" (dblclick)="setEdit(i)">
+                <td>
+                  <span>{{dep.nomDepart}}</span>
+                </td>
+                <td>
+                  <span>{{dep.universite.nom}}</span>
+                  <span [hidden]="!isEdit[i]"><app-edit-departement [parentDep]="dep"  (editedEvent)="isEdit[i]=$event" (depEvent)="updateDepFromChild(i,$event)"></app-edit-departement></span>
+                </td>
+              </tr>
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

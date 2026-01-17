@@ -1,0 +1,103 @@
+<div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h1>Edit a contract</h1>
+        </div>
+
+        <div class=" card-body">
+          <form #contratForm="ngForm">
+
+            <div class=" row">
+              <div class=" col-md-6 ">
+                <div class=" form-group">
+                  <label> Stat date </label>
+                  <div class="input-group">
+                    <input
+                      class="form-control"
+                      placeholder="Start date"
+                      type="text"
+                      name="dateDebutContrat"
+                      [readOnly]="true"
+                      required
+                      ngbDatepicker #dd="ngbDatepicker" placement="bottom"
+                      [(ngModel)]="dateDeb"
+                      #dDeb="ngModel"
+                    />
+                    <button (click)="dd.toggle()" class="input-group-addon btn-primary">
+                      <i class="tim-icons icon-calendar-60"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class=" row">
+              <div class=" col-md-6 ">
+                <div class=" form-group">
+                  <label> End date </label>
+                  <div class="input-group">
+                    <input
+                      readonly
+                      class="form-control"
+                      placeholder="End date"
+                      type="text"
+                      required
+                      name="dateFinContrat"
+                      [minDate]="dateDeb"
+                      ngbDatepicker #df="ngbDatepicker" placement="bottom"
+                      [(ngModel)]="dateFin"
+                    />
+                    <button (click)="df.toggle()" class="input-group-addon btn-primary" [disabled]="!dDeb.valid">
+                      <i class="tim-icons icon-calendar-60"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class=" row">
+              <div class=" col-md-6 ">
+                <div class=" form-group">
+                  <label for="specialite"> Specialty </label>
+                  <select id="specialite" class="form-control" name= "specialite"[(ngModel)]="contract.specialite">
+                    <option [ngStyle]="{'color': 'black'}" value="{{specialty}}" *ngFor="let specialty of specialties">{{specialty}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class=" row">
+              <div class=" col-md-6 ">
+                <div class=" form-group">
+                  <label for="specialite"> Money </label>
+                  <input type="number" class="form-control"
+                         min="10" name="montant"
+                         [(ngModel)]="contract.montantContrat" required>
+                </div>
+              </div>
+            </div>
+
+            <div class=" row">
+              <div class=" col-md-6 ">
+                <div class=" form-group">
+                  <label for="student"> Student </label>
+                  <select id="student" class="form-control" name= "student"[(ngModel)]="contract.etudiant.idEtudiant">
+                    <option [ngStyle]="{'color': 'black'}" value="{{student.idEtudiant}}" *ngFor="let student of students">{{student.prenom}} {{student.nom}} - {{student.departement.universite.nom}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+        <div class=" card-footer">
+          <button class=" btn btn-fill btn-danger" (click)="updateContract()" [disabled]="!contratForm.valid">Save</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

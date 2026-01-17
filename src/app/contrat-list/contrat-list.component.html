@@ -1,0 +1,63 @@
+
+<div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+
+        <div class="card-header">
+          <div class="row">
+            <div class="col-sm-6 text-left">
+              <h1>Contracts:</h1>
+            </div>
+            <div class="col-sm-6">
+              <div class="float-right mr-4">
+
+                <a class="btn btn-sm btn-danger btn-simple" [routerLink]="['/contract/add']">Create a new contract</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="" [ngClass]="contracts.length>12?'table-responsive':''">
+
+            <table class="table table-striped">
+
+              <thead class="text-primary">
+              <tr>
+                <th>Student</th>
+                <th>Speciality</th>
+                <th>Start date</th>
+                <th>Start end</th>
+                <th>Archived</th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let contract of contracts, let i= index" class="hoverTd" (dblclick)="toEdit(contract)">
+                <td>
+                  <span>{{contract.etudiant.prenom}} {{contract.etudiant.prenom}}</span>
+                </td>
+                <td>
+                  <span>{{contract.specialite}}</span>
+                </td>
+                <td>
+                  <span>{{contract.dateDebutContrat}}</span>
+                </td>
+                <td>
+                  <span>{{contract.dateFinContrat}}</span>
+                </td>
+                <td>
+                  <span><app-archive-contrat [parentContrat]="contract" (contrtEvent)="updateDepFromChild(i, $event)"></app-archive-contrat></span>
+                </td>
+                <td class="actionCol" (click)="deleteContrat(contract.idContrat)"><i class="tim-icons icon-trash-simple text-danger-states pointer"></i></td>
+              </tr>
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

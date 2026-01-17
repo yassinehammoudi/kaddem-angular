@@ -1,0 +1,23 @@
+<form ngForm #uniForm="ngForm">
+
+  <div class=" row">
+    <div class=" col-md-12">
+      <div class=" form-group">
+        <label> University name </label>
+        <input
+          class="form-control"
+          placeholder="Name"
+          type="text"
+
+          name="nom"
+          [(ngModel)]="university.nom"
+
+          required
+          [minlength]="3"
+        />
+      </div>
+
+    </div>
+    <button class=" btn btn-fill btn-danger" (click)="updateUni()" [disabled]="uniForm.invalid">Save</button>
+  </div>
+</form>

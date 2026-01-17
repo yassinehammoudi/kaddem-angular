@@ -1,0 +1,87 @@
+<div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h1>Add a team</h1>
+        </div>
+
+        <div class=" card-body">
+          <form [formGroup]="teamForm">
+
+            <div class=" row">
+              <div class=" col-md-6 ">
+                <div class=" form-group">
+                  <label> Team name </label>
+                  <input
+                    class="form-control"
+                    placeholder="Name"
+                    type="text"
+
+                    name="nomEquipe"
+
+                    formControlName="nomEquipe"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class=" row">
+              <div class=" col-md-6 ">
+                <div class=" form-group">
+                  <label for="niveau"> Level </label>
+                  <select id="niveau" class="form-control" formControlName="niveau">
+                    <option [ngStyle]="{'color': 'black'}" *ngFor="let level of levels">{{level}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div formGroupName="detailEquipe">
+              <label class="col" [ngStyle]="{'font-size': '20px'}">Details</label>
+              <div class=" ">
+                <div class=" col-md-6 ">
+                  <div class=" form-group">
+                    <label> Room </label>
+                    <input
+                      class="form-control"
+                      placeholder="Room"
+                      type="number"
+
+                      name="salle"
+
+                      formControlName="salle"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class=" ">
+                <div class=" col-md-6 ">
+                  <div class=" form-group">
+                    <label> Thematic </label>
+                    <input
+                      class="form-control"
+                      placeholder="Thematic"
+                      type="text"
+
+                      name="thematic"
+
+                      formControlName="thematique"
+                    />
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </form>
+        </div>
+
+        <div class=" card-footer">
+          <button class=" btn btn-fill btn-danger" (click)="addEquipe()" [disabled]="!teamForm.valid">Save</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

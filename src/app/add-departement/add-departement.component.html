@@ -1,0 +1,51 @@
+<div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h1>Add a department</h1>
+        </div>
+
+        <div class=" card-body">
+          <form ngForm #depForm="ngForm">
+
+            <div class=" row">
+              <div class=" col-md-12">
+                <div class=" form-group">
+                  <label> Department name </label>
+                  <input
+                    class="form-control"
+                    placeholder="Name"
+                    type="text"
+
+                    name="nom"
+                    [(ngModel)]="dep.nomDepart"
+
+                    required
+                    [minlength]="3"
+                  />
+                </div>
+
+                <div class=" form-group">
+                  <label> University </label>
+                  <select [(ngModel)]="dep.universite.idUniv" required class="form-control" [ngModelOptions]="{standalone: true}">
+                    <option *ngFor="let uni of universities"
+                            [ngValue]="uni.idUniv"
+                            [ngStyle]="{'color': 'black'}">{{uni.nom}}</option>
+                  </select>
+                  <p>{{dep.universite.nom}}</p>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class=" card-footer">
+          <button class=" btn btn-fill btn-danger" (click)="addDep()" [disabled]="depForm.invalid">Save</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

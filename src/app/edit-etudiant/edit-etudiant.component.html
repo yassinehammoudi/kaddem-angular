@@ -1,0 +1,96 @@
+<div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h1>Edit a student</h1>
+        </div>
+
+        <div class=" card-body">
+          <form #etForm="ngForm">
+
+            <div class=" row">
+              <div class=" col-md-6 ">
+                <div class=" form-group">
+                  <label> Student name </label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <input
+
+                        class="form-control"
+                        placeholder="prenom"
+                        type="text"
+
+                        name="prenom"
+                        [(ngModel)]="student.prenom"
+                      />
+                      <input
+
+                        class="form-control"
+                        placeholder="nom"
+                        type="text"
+
+                        name="nom"
+
+                        [(ngModel)]="student.nom"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class=" row">
+              <div class=" col-md-6 ">
+                <div class=" form-group">
+                  <label for="optionEtudiant"> Option </label>
+                  <select id="optionEtudiant" class="form-control"  name="optionEtudiant" [ngModel]="student.optionEtudiant">
+                    <option [ngStyle]="{'color': 'black'}" *ngFor="let option of options" value="{{option}}">{{option}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class=" row">
+              <div class=" col-md-6 ">
+                <div class=" form-group">
+                  <label for="department"> Department </label>
+                  <select id="department" class="form-control" name="department" [(ngModel)]="student.departement.idDepart">
+                    <option [ngStyle]="{'color': 'black'}" *ngFor="let department of departments" value="{{department.idDepart}}">{{department.nomDepart}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class=" row">
+              <div class=" col-md-6 ">
+                <div class=" form-group">
+                  <label> Teams </label>
+                  <div *ngFor="let equipe of studentEquipes" class="input-group">
+                    <input class="form-control" readonly value="{{equipe.nomEquipe}}">
+                    <button class="btn-primary input-group-addon" (click)="removeTeam(equipe)"><i class="tim-icons icon-simple-remove"></i></button>
+                  </div>
+
+                  <div class="input-group">
+                    <select class="form-control" name="department" [(ngModel)]="selectedID">
+                      <option [ngStyle]="{'color': 'black'}" *ngFor="let team of teams" value="{{team.idEquipe}}">{{team.nomEquipe}}</option>
+                    </select>
+                    <button class="btn-success input-group-addon" [disabled]="selectedID==0" (click)="addTeamSelection()"><i class="tim-icons icon-simple-add"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+          </form>
+        </div>
+
+        <div class=" card-footer">
+          <button class=" btn btn-fill btn-danger" (click)="updateEtudiant()" [disabled]="!etForm.valid">Save</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

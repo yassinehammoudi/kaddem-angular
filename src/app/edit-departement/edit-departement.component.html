@@ -1,0 +1,32 @@
+<form ngForm #depForm="ngForm">
+
+  <div class=" row">
+    <div class=" col-md-12">
+      <div class=" form-group">
+        <label> Department name </label>
+        <input
+          class="form-control"
+          placeholder="Name"
+          type="text"
+
+          name="nom"
+          [(ngModel)]="dep.nomDepart"
+
+          required
+          [minlength]="3"
+        />
+      </div>
+
+      <div class=" form-group">
+        <label> University </label>
+        <select [(ngModel)]="dep.universite.idUniv" required
+                class="form-control" [ngModelOptions]="{standalone: true}">
+          <option *ngFor="let uni of universities"
+                  [ngValue]="uni.idUniv" [selected]="uni.idUniv == dep.universite.idUniv"
+                  [ngStyle]="{'color': 'black'}">{{uni.nom}}</option>
+        </select>
+      </div>
+    </div>
+    <button class=" btn btn-fill btn-danger" (click)="updateDep()" [disabled]="depForm.invalid">Save</button>
+  </div>
+</form>
